@@ -1,3 +1,1 @@
-import Frame from './Container';
-
-export default Frame;
+export * from './Container';
