@@ -11,7 +11,7 @@ import {Category} from '@/src/types';
 
 import {ManageView} from './View';
 
-function Manage()
+export function Manage()
 {
     const [loading, setLoading] = useState(false);
     const [categoryMap, setCategoryMap] = useState<Map<number, Category>>(new Map());
@@ -185,5 +185,3 @@ function Manage()
         />
     );
 }
-
-export default React.memo(Manage);

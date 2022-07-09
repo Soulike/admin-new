@@ -2,7 +2,7 @@ import {ArticleList} from '@/src/components/ArticleList';
 
 import Style from './Style.module.scss';
 
-export function ManageView()
+export function Manage()
 {
     return (
         <div className={Style.Manage}>
