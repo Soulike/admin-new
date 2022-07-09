@@ -33,7 +33,7 @@ interface Props {
     HTMLContent: string;
 }
 
-export function ArticleEditorView(props: Props) {
+export function ArticleEditor(props: Props) {
     const {
         title,
         content,
