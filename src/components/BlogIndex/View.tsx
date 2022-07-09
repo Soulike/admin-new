@@ -4,7 +4,7 @@ import svg from '@/src/static/Blog/macbook.svg';
 
 import Style from './Style.module.scss';
 
-function BlogIndexView()
+export function BlogIndex()
 {
     return (
         <div className={Style.BlogIndex}>
@@ -12,5 +12,3 @@ function BlogIndexView()
         </div>
     );
 }
-
-export default React.memo(BlogIndexView);
