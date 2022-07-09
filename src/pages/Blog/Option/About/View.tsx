@@ -9,22 +9,20 @@ import Style from './Style.module.scss';
 
 const {TextArea} = Input;
 
-interface Props
-{
-    about: string,
-    aboutHtml: string,
-    onAboutTextareaChange: TextAreaProps['onChange'],
-    onPreviewButtonClick: NativeButtonProps['onClick'],
-    onSubmitButtonClick: NativeButtonProps['onClick'],
+interface Props {
+    about: string;
+    aboutHtml: string;
+    onAboutTextareaChange: TextAreaProps['onChange'];
+    onPreviewButtonClick: NativeButtonProps['onClick'];
+    onSubmitButtonClick: NativeButtonProps['onClick'];
 
-    onPreviewModalOk: ModalProps['onOk'],
-    onPreviewModalCancel: ModalProps['onCancel'],
-    previewModalVisible: boolean,
-    loading: boolean,
+    onPreviewModalOk: ModalProps['onOk'];
+    onPreviewModalCancel: ModalProps['onCancel'];
+    previewModalVisible: boolean;
+    loading: boolean;
 }
 
-export function AboutView(props: Props)
-{
+export function AboutView(props: Props) {
     const {
         onAboutTextareaChange,
         about,
@@ -39,19 +37,33 @@ export function AboutView(props: Props)
 
     return (
         <div className={Style.About}>
-            <TextArea className={Style.textarea}
-                      placeholder={'关于内容（Markdown）'}
-                      onChange={onAboutTextareaChange}
-                      value={about} disabled={loading} />
-            <Button.Group size={'large'} className={Style.buttonWrapper}>
-                <Button disabled={loading} onClick={onPreviewButtonClick}>预览</Button>
-                <Button disabled={loading} type={'primary'} onClick={onSubmitButtonClick}>提交</Button>
-            </Button.Group>
-            <ArticlePreviewModal title={'关于'}
-                                 HTMLContent={aboutHtml}
-                                 onOk={onPreviewModalOk}
-                                 onCancel={onPreviewModalCancel}
-                                 visible={previewModalVisible} />
+            <TextArea
+                className={Style.textarea}
+                placeholder={'关于内容（Markdown）'}
+                onChange={onAboutTextareaChange}
+                value={about}
+                disabled={loading}
+            />
+            <div className={Style.buttonWrapper}>
+                <Button.Group size={'large'}>
+                    <Button disabled={loading} onClick={onPreviewButtonClick}>
+                        预览
+                    </Button>
+                    <Button
+                        disabled={loading}
+                        type={'primary'}
+                        onClick={onSubmitButtonClick}>
+                        提交
+                    </Button>
+                </Button.Group>
+            </div>
+            <ArticlePreviewModal
+                title={'关于'}
+                HTMLContent={aboutHtml}
+                onOk={onPreviewModalOk}
+                onCancel={onPreviewModalCancel}
+                visible={previewModalVisible}
+            />
         </div>
     );
 }

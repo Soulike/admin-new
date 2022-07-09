@@ -3,7 +3,6 @@
     height: 100vh;
 
     .header {
-
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -19,12 +18,12 @@
 
             .icon {
                 font-size: 50px;
-                color: #FFF;
+                color: #fff;
             }
 
             .text {
                 font-size: 25px;
-                color: #FFF;
+                color: #fff;
                 font-weight: bolder;
                 font-family: serif;
             }
@@ -36,7 +35,7 @@
 
         .exitButton {
             float: right;
-            color: #AAA;
+            color: #aaa;
             height: 100%;
         }
     }

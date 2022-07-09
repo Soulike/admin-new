@@ -25,8 +25,9 @@ export function Modify() {
     const [isSubmittingArticle, setIsSubmittingArticle] = useState(false);
     const [isArticlePreviewModalVisible, setIsArticlePreviewModalVisible] =
         useState(false);
-    
-    const {loading: converterLoading, html: HTMLContent} = useMarkdownConverter(content);
+
+    const {loading: converterLoading, html: HTMLContent} =
+        useMarkdownConverter(content);
 
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();

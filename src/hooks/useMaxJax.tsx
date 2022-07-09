@@ -8,15 +8,12 @@ import {loadScript} from '@/src/utils/script';
  *
  * @param deps When the items in deps changed, MaxJax will be reloaded.
  * */
-export function useMaxJax(deps?: Readonly<DependencyList>)
-{
+export function useMaxJax(deps?: Readonly<DependencyList>) {
     const typesetId = 'mathjax-typeset';
 
-    useEffect(() =>
-    {
+    useEffect(() => {
         const $typeset = document.querySelector('#' + typesetId);
-        if ($typeset !== null)
-        {
+        if ($typeset !== null) {
             $typeset.remove();
         }
         loadScript(`MathJax.typesetPromise()`, {id: typesetId});

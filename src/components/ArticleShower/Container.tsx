@@ -15,6 +15,9 @@ export function ArticleShower(props: IProps) {
     useMaxJax([HTMLContent]);
 
     return (
-        <ArticleShowerView HTMLContent={highlightedHtml ?? ''} loading={loading} />
+        <ArticleShowerView
+            HTMLContent={highlightedHtml ?? ''}
+            loading={loading}
+        />
     );
 }

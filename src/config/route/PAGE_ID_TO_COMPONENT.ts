@@ -25,18 +25,18 @@ const CategoryAdd = React.lazy(() =>
         default: module.Add,
     })),
 );
-const ArticleManage = React.lazy(
-    () => import('@/src/pages/Blog/Article/Manage').then((module) => ({
+const ArticleManage = React.lazy(() =>
+    import('@/src/pages/Blog/Article/Manage').then((module) => ({
         default: module.Manage,
     })),
 );
-const ArticleModify = React.lazy(
-    () => import('@/src/pages/Blog/Article/Modify').then((module) => ({
+const ArticleModify = React.lazy(() =>
+    import('@/src/pages/Blog/Article/Modify').then((module) => ({
         default: module.Modify,
     })),
 );
-const CategoryManage = React.lazy(
-    () => import('@/src/pages/Blog/Category/Manage').then((module) => ({
+const CategoryManage = React.lazy(() =>
+    import('@/src/pages/Blog/Category/Manage').then((module) => ({
         default: module.Manage,
     })),
 );

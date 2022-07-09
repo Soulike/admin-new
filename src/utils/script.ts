@@ -1,11 +1,8 @@
-export function loadScript(script: string, tagAttr?: { [key: string]: string })
-{
+export function loadScript(script: string, tagAttr?: {[key: string]: string}) {
     const tag = document.createElement('script');
 
-    if (tagAttr !== undefined)
-    {
-        Object.keys(tagAttr).forEach(attr =>
-        {
+    if (tagAttr !== undefined) {
+        Object.keys(tagAttr).forEach((attr) => {
             tag.setAttribute(attr, tagAttr[attr]);
         });
     }
@@ -14,16 +11,15 @@ export function loadScript(script: string, tagAttr?: { [key: string]: string })
     document.body.appendChild(tag);
 }
 
-export async function loadExternalScript(src: string, tagAttr?: { [key: string]: string })
-{
-    return new Promise<void>((resolve, reject) =>
-    {
+export async function loadExternalScript(
+    src: string,
+    tagAttr?: {[key: string]: string},
+) {
+    return new Promise<void>((resolve, reject) => {
         const tag = document.createElement('script');
 
-        if (tagAttr !== undefined)
-        {
-            Object.keys(tagAttr).forEach(attr =>
-            {
+        if (tagAttr !== undefined) {
+            Object.keys(tagAttr).forEach((attr) => {
                 tag.setAttribute(attr, tagAttr[attr]);
             });
         }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
 import {Blog} from '@/src/apis';
 import {Article} from '@/src/types';

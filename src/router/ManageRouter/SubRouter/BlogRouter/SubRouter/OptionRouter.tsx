@@ -8,10 +8,13 @@ import {
 
 const {OPTION} = PAGE_ID.MANAGE.BLOG;
 
-export const OptionRouter = Object.values(OPTION).map(pageId =>
-{
+export const OptionRouter = Object.values(OPTION).map((pageId) => {
     const Component = PAGE_ID_TO_COMPONENT[pageId];
-    return <Route key={pageId}
-                  path={PAGE_ID_TO_ROUTE[pageId]}
-                  element={<Component />} />;
+    return (
+        <Route
+            key={pageId}
+            path={PAGE_ID_TO_ROUTE[pageId]}
+            element={<Component />}
+        />
+    );
 });

@@ -14,8 +14,10 @@ const IndexComponent = PAGE_ID_TO_COMPONENT[PAGE_ID.MANAGE.BLOG.INDEX];
 
 export const BlogRouter = (
     <>
-        <Route path={PAGE_ID_TO_ROUTE[PAGE_ID.MANAGE.BLOG.INDEX]}
-               element={<IndexComponent />} />
+        <Route
+            path={PAGE_ID_TO_ROUTE[PAGE_ID.MANAGE.BLOG.INDEX]}
+            element={<IndexComponent />}
+        />
         <Route path={PAGE_ID_TO_ROUTE[PAGE_ID.MANAGE.BLOG.ARTICLE.INDEX]}>
             {ArticleRouter}
         </Route>
@@ -25,4 +27,5 @@ export const BlogRouter = (
         <Route path={PAGE_ID_TO_ROUTE[PAGE_ID.MANAGE.BLOG.OPTION.INDEX]}>
             {OptionRouter}
         </Route>
-    </>);
+    </>
+);

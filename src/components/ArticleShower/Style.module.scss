@@ -1,5 +1,4 @@
 .ArticleShower {
-
     /*覆盖 <article> 中 <h1> 尺寸*/
     h1 {
         font-size: 2em;
@@ -14,11 +13,11 @@
             display: block;
             background-clip: border-box;
             padding: 10px 20px;
-
         }
     }
 
-    img, table {
+    img,
+    table {
         margin: 1em auto;
     }
 
@@ -38,16 +37,17 @@
         overflow: auto;
         word-break: break-word;
 
-        th, td {
-            border: 1px solid #DDD;
+        th,
+        td {
+            border: 1px solid #ddd;
             padding: 1vh 1vw;
         }
     }
 
     blockquote {
-        border-left: 10px solid #6CF;
-        border-top: 1px solid #DDD;
-        border-bottom: 1px solid #DDD;
+        border-left: 10px solid #6cf;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
         padding: 2em;
 
         p {

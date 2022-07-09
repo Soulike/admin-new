@@ -25,7 +25,8 @@ export function About() {
         });
     }, []);
 
-    const {loading: converterLoading, html: aboutHtml} = useMarkdownConverter(aboutMarkdown);
+    const {loading: converterLoading, html: aboutHtml} =
+        useMarkdownConverter(aboutMarkdown);
 
     const onAboutTextareaChange: TextAreaProps['onChange'] = (e) => {
         setAboutMarkdown(e.target.value);

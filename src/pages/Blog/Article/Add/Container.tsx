@@ -21,8 +21,9 @@ export function Add() {
     const [isSubmittingArticle, setIsSubmittingArticle] = useState(false);
     const [isArticlePreviewModalVisible, setIsArticlePreviewModalVisible] =
         useState(false);
-    
-    const {loading: converterLoading, html: HTMLContent} = useMarkdownConverter(content);
+
+    const {loading: converterLoading, html: HTMLContent} =
+        useMarkdownConverter(content);
 
     useEffect(() => {
         const getCategoryOption = async () => {
