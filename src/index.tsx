@@ -1,11 +1,15 @@
 import 'antd/dist/antd.min.css';
 import '@/src/moduleConfig/antd';
-import './index.css';
+import './index.scss';
 
-import React from 'react';
+import {ConfigProvider} from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
+import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from './App';
+import {Loading} from '@/src/components/Loading';
+import {Router} from '@/src/router';
+
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -13,7 +17,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <App />
+        <Suspense fallback={<Loading />}>
+            <ConfigProvider locale={zhCN}>
+                <Router />
+            </ConfigProvider>
+        </Suspense>
     </React.StrictMode>,
 );
 
