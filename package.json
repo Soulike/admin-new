@@ -27,7 +27,6 @@
     },
     "dependencies": {
         "@ant-design/icons": "^4.7.0",
-        "timers": "npm:timers-browserify",
         "antd": "^4.21.3",
         "axios": "^0.27.2",
         "highlight.js": "^11.5.1",
@@ -36,6 +35,7 @@
         "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.1",
         "showdown": "^2.1.0",
+        "timers": "npm:timers-browserify",
         "timers-browserify": "^2.0.12",
         "web-vitals": "^2.1.0"
     },
@@ -58,6 +58,7 @@
         "lint-staged": "^13.0.3",
         "prettier": "^2.7.1",
         "sass": "^1.53.0",
+        "source-map-explorer": "^2.5.2",
         "typescript": "^4.4.2"
     },
     "eslintConfig": {
