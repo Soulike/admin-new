@@ -3,7 +3,8 @@ import {Button, Input} from 'antd';
 import {InputProps} from 'antd/lib/input';
 import {DOMAttributes} from 'react';
 
-import web_developer from '../../Static/Login/web_developer.svg';
+import web_developer from '@/src/static/Login/web_developer.svg';
+
 import Style from './Style.module.scss';
 
 interface Props
