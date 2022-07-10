@@ -1,4 +1,5 @@
-import {useEffect, useState} from 'react';
+import {useDebounceEffect} from 'ahooks';
+import {useState} from 'react';
 
 export function useMarkdownConverter(markdown: string | undefined): {
     loading: boolean;
@@ -7,19 +8,23 @@ export function useMarkdownConverter(markdown: string | undefined): {
     const [loading, setLoading] = useState(true);
     const [html, setHtml] = useState<string | null>(null);
 
-    useEffect(() => {
-        setLoading(true);
-        setHtml(null);
-        if (markdown === undefined) {
-            return;
-        }
-        import('@/src/utils/markdownConverter')
-            .then(({markdownConverter}) => {
-                const html = markdownConverter.makeHtml(markdown);
-                setHtml(html);
-            })
-            .finally(() => setLoading(false));
-    }, [markdown]);
+    useDebounceEffect(
+        () => {
+            setLoading(true);
+            setHtml(null);
+            if (markdown === undefined) {
+                return;
+            }
+            import('@/src/utils/markdownConverter')
+                .then(({markdownConverter}) => {
+                    const html = markdownConverter.makeHtml(markdown);
+                    setHtml(html);
+                })
+                .finally(() => setLoading(false));
+        },
+        [markdown],
+        {wait: 500},
+    );
 
     return {loading, html};
 }
