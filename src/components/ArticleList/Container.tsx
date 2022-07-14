@@ -117,7 +117,7 @@ export function ArticleList(props: IProps) {
                             message.warning('文章不存在');
                         } else {
                             article.isVisible = checked;
-                            setArticleMap(new Map(articleMap)); // TODO: check if we can remove the new Map()
+                            setArticleMap(new Map(articleMap));
                             setLoadingArticleId(0);
                         }
                     }
