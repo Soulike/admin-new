@@ -5,7 +5,7 @@ import {Article} from '@/src/types';
 
 const {Article: ArticleApi} = Blog;
 
-export function useArticles(categoryId: number | null | undefined): {
+export function useArticles(categoryId?: number): {
     loading: boolean;
     articles: Article[] | null;
 } {
@@ -15,12 +15,14 @@ export function useArticles(categoryId: number | null | undefined): {
     useEffect(() => {
         setLoading(true);
         setArticles(null);
-        if (categoryId === undefined) {
+
+        if (categoryId !== undefined && isNaN(categoryId)) {
+            setLoading(false);
             return;
         }
 
         const promise =
-            categoryId === null
+            categoryId === undefined
                 ? ArticleApi.getAll()
                 : ArticleApi.getByCategory(categoryId);
 
