@@ -7,7 +7,7 @@ import {
     TagsFilled,
 } from '@ant-design/icons';
 import {Layout, Menu} from 'antd';
-import {Link, Location, Outlet} from 'react-router-dom';
+import {Link, Outlet} from 'react-router-dom';
 
 import {PAGE_ID, PAGE_ID_TO_ROUTE, ROUTE_TO_PAGE_ID} from '@/src/config/route';
 
@@ -16,18 +16,18 @@ import Style from './Style.module.scss';
 const {Content, Sider} = Layout;
 
 interface Props {
-    location: Location;
+    pathname: string;
 }
 
 export function BlogFrameView(props: Props) {
-    const {location} = props;
+    const {pathname} = props;
     return (
         <Layout className={Style.BlogFrame}>
             <Sider width={250} theme={'light'}>
                 <Menu
                     theme={'light'}
                     mode={'inline'}
-                    selectedKeys={[ROUTE_TO_PAGE_ID[location.pathname]]}
+                    selectedKeys={[ROUTE_TO_PAGE_ID[pathname]]}
                     items={[
                         {
                             label: (

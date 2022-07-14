@@ -5,5 +5,5 @@ import {BlogFrameView} from './View';
 export function BlogFrame() {
     const location = useLocation();
 
-    return <BlogFrameView location={location} />;
+    return <BlogFrameView pathname={location.pathname} />;
 }
