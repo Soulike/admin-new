@@ -12,18 +12,18 @@ import Style from './Style.module.scss';
 const {Group, TextArea} = Input;
 const {Option} = Select;
 
-interface Props {
+export interface IArticleEditorProps {
     title: string;
     content: string;
     category: number | undefined;
     isVisible: boolean;
-    categoryOption: Array<Category>;
+    categoryOptions: Array<Category>;
     onTitleInputChange: InputProps['onChange'];
     onContentTextAreaChange: TextAreaProps['onChange'];
     onCategorySelectorChange: SelectProps<number>['onChange'];
     onIsVisibleCheckboxChange: CheckboxProps['onChange'];
     onSubmitButtonClick: NativeButtonProps['onClick'];
-    isLoadingCategory: boolean;
+    isLoadingCategoryOptions: boolean;
     isLoadingArticle: boolean;
     isSubmittingArticle: boolean;
     onArticlePreviewButtonClick: NativeButtonProps['onClick'];
@@ -33,19 +33,19 @@ interface Props {
     HTMLContent: string;
 }
 
-export function ArticleEditor(props: Props) {
+export function ArticleEditor(props: IArticleEditorProps) {
     const {
         title,
         content,
         category,
         isVisible,
-        categoryOption,
+        categoryOptions,
         onTitleInputChange,
         onContentTextAreaChange,
         onCategorySelectorChange,
         onIsVisibleCheckboxChange,
         onSubmitButtonClick,
-        isLoadingCategory,
+        isLoadingCategoryOptions,
         isSubmittingArticle,
         isLoadingArticle,
         onArticlePreviewButtonClick,
@@ -59,7 +59,7 @@ export function ArticleEditor(props: Props) {
             <Group size={'large'} className={Style.inputGroup}>
                 <Input
                     disabled={
-                        isLoadingCategory ||
+                        isLoadingCategoryOptions ||
                         isSubmittingArticle ||
                         isLoadingArticle
                     }
@@ -70,7 +70,7 @@ export function ArticleEditor(props: Props) {
                 />
                 <TextArea
                     disabled={
-                        isLoadingCategory ||
+                        isLoadingCategoryOptions ||
                         isSubmittingArticle ||
                         isLoadingArticle
                     }
@@ -85,11 +85,11 @@ export function ArticleEditor(props: Props) {
                     size={'large'}
                     onChange={onCategorySelectorChange}
                     value={category}
-                    loading={isLoadingCategory}
+                    loading={isLoadingCategoryOptions}
                     className={Style.categorySelect}
-                    disabled={isLoadingCategory}
+                    disabled={isLoadingCategoryOptions}
                     placeholder={'文章分类'}>
-                    {categoryOption.map((category) => {
+                    {categoryOptions.map((category) => {
                         const {id, name} = category;
                         return (
                             <Option value={id} key={id}>
@@ -101,7 +101,7 @@ export function ArticleEditor(props: Props) {
                 <Checkbox
                     disabled={
                         isSubmittingArticle ||
-                        isLoadingCategory ||
+                        isLoadingCategoryOptions ||
                         isLoadingArticle
                     }
                     checked={isVisible}
@@ -120,7 +120,7 @@ export function ArticleEditor(props: Props) {
                         size={'large'}
                         disabled={
                             isSubmittingArticle ||
-                            isLoadingCategory ||
+                            isLoadingCategoryOptions ||
                             isLoadingArticle
                         }
                         onClick={onSubmitButtonClick}>

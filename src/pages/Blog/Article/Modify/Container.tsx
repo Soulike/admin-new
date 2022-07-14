@@ -4,37 +4,35 @@ import {CheckboxProps} from 'antd/lib/checkbox';
 import {InputProps, TextAreaProps} from 'antd/lib/input';
 import {SelectProps} from 'antd/lib/select';
 import {useEffect, useState} from 'react';
-import {useNavigate, useSearchParams} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import {Blog} from '@/src/apis';
 import {PAGE_ID, PAGE_ID_TO_ROUTE} from '@/src/config/route';
+import {useCategories} from '@/src/hooks/useCategories';
 import {useMarkdownConverter} from '@/src/hooks/useMarkdownConverter';
-import {Category} from '@/src/types';
+import {useSearchParam} from '@/src/hooks/useSearchParam';
 
 import {ModifyView} from './View';
 
 export function Modify() {
-    const [id, setId] = useState(0);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [category, setCategory] = useState<number | undefined>(undefined);
     const [isVisible, setIsVisible] = useState(true);
-    const [categoryOption, setCategoryOption] = useState<Category[]>([]);
-    const [isLoadingCategory, setIsLoadingCategory] = useState(false);
     const [isLoadingArticle, setIsLoadingArticle] = useState(false);
     const [isSubmittingArticle, setIsSubmittingArticle] = useState(false);
     const [isArticlePreviewModalVisible, setIsArticlePreviewModalVisible] =
         useState(false);
+    const [id, setId] = useState(0);
+    
+    const navigate = useNavigate();
 
     const {loading: converterLoading, html: HTMLContent} =
         useMarkdownConverter(content);
-
-    const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
+    
+    const [idString] = useSearchParam('id');
 
     useEffect(() => {
-        // 查询字符串格式为 ?id=xxx
-        const idString = searchParams.get('id');
         if (idString === null) {
             message.warning('参数不正确');
         } else {
@@ -42,8 +40,8 @@ export function Modify() {
             if (Number.isNaN(id)) {
                 message.warning('参数不正确');
             } else {
-                // 获取文章内容
                 setId(id);
+                // 获取文章内容
                 setIsLoadingArticle(true);
                 Blog.Article.getById(id)
                     .then((article) => {
@@ -59,18 +57,9 @@ export function Modify() {
                     .finally(() => setIsLoadingArticle(false));
             }
         }
-    }, [searchParams]);
+    }, [idString]);
 
-    useEffect(() => {
-        setIsLoadingCategory(true);
-        Blog.Category.getAll()
-            .then((categoryList) => {
-                if (categoryList !== null) {
-                    setCategoryOption(categoryList);
-                }
-            })
-            .finally(() => setIsLoadingCategory(false));
-    }, []);
+    const {loading: categoriesAreLoading, categories} = useCategories();
 
     const onTitleInputChange: InputProps['onChange'] = (e) => {
         setTitle(e.target.value);
@@ -135,8 +124,8 @@ export function Modify() {
             title={title}
             content={content}
             category={category}
-            categoryOption={categoryOption}
-            isLoadingCategory={isLoadingCategory}
+            categoryOptions={categories ?? []}
+            isLoadingCategoryOptions={categoriesAreLoading}
             isLoadingArticle={isLoadingArticle}
             isSubmittingArticle={isSubmittingArticle}
             HTMLContent={HTMLContent ?? ''}

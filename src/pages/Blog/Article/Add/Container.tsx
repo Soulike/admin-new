@@ -3,11 +3,11 @@ import {NativeButtonProps} from 'antd/lib/button/button';
 import {CheckboxProps} from 'antd/lib/checkbox';
 import {InputProps, TextAreaProps} from 'antd/lib/input';
 import {SelectProps} from 'antd/lib/select';
-import React, {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 import {Blog} from '@/src/apis';
+import {useCategories} from '@/src/hooks/useCategories';
 import {useMarkdownConverter} from '@/src/hooks/useMarkdownConverter';
-import {Category} from '@/src/types';
 
 import {AddView} from './View';
 
@@ -16,8 +16,6 @@ export function Add() {
     const [content, setContent] = useState('');
     const [category, setCategory] = useState<number | undefined>(undefined);
     const [isVisible, setIsVisible] = useState(true);
-    const [categoryOption, setCategoryOption] = useState<Category[]>([]);
-    const [isLoadingCategory, setIsLoadingCategory] = useState(false);
     const [isSubmittingArticle, setIsSubmittingArticle] = useState(false);
     const [isArticlePreviewModalVisible, setIsArticlePreviewModalVisible] =
         useState(false);
@@ -25,17 +23,7 @@ export function Add() {
     const {loading: converterLoading, html: HTMLContent} =
         useMarkdownConverter(content);
 
-    useEffect(() => {
-        const getCategoryOption = async () => {
-            const category = await Blog.Category.getAll();
-            if (category !== null) {
-                setCategoryOption(category);
-            }
-        };
-
-        setIsLoadingCategory(true);
-        getCategoryOption().finally(() => setIsLoadingCategory(false));
-    }, []);
+    const {loading: categoriesAreLoading, categories} = useCategories();
 
     const onTitleInputChange: InputProps['onChange'] = (e) => {
         setTitle(e.target.value);
@@ -73,7 +61,6 @@ export function Add() {
         setContent('');
         setCategory(undefined);
         setIsVisible(true);
-        setIsLoadingCategory(false);
         setIsSubmittingArticle(false);
     };
 
@@ -107,13 +94,13 @@ export function Add() {
             content={content}
             category={category}
             isVisible={isVisible && !converterLoading}
-            categoryOption={categoryOption}
+            categoryOptions={categories ?? []}
             onTitleInputChange={onTitleInputChange}
             onContentTextAreaChange={onContentTextAreaChange}
             onCategorySelectorChange={onCategorySelectorChange}
             onIsVisibleCheckboxChange={onIsVisibleCheckboxChange}
             onSubmitButtonClick={onSubmitButtonClick}
-            isLoadingCategory={isLoadingCategory}
+            isLoadingCategoryOptions={categoriesAreLoading}
             isSubmittingArticle={isSubmittingArticle}
             isArticlePreviewModalVisible={isArticlePreviewModalVisible}
             onArticlePreviewButtonClick={onArticlePreviewButtonClick}
