@@ -1,6 +1,6 @@
 import {DashboardFilled, PoweroffOutlined} from '@ant-design/icons';
 import {Button, Card, Layout} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
+import {ButtonProps} from 'antd/lib/button/button';
 import {Link, Outlet} from 'react-router-dom';
 
 import {PAGE_ID, PAGE_ID_TO_ROUTE} from '@/src/config/route';
@@ -11,7 +11,7 @@ import Style from './Style.module.scss';
 const {Header, Content, Footer} = Layout;
 
 interface Props {
-    onExitButtonClick: NativeButtonProps['onClick'];
+    onExitButtonClick: ButtonProps['onClick'];
 }
 
 export function FrameView(props: Props) {

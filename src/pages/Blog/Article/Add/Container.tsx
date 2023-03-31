@@ -1,9 +1,9 @@
 import {ButtonProps, message, notification} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
 import {CheckboxProps} from 'antd/lib/checkbox';
 import {InputProps, TextAreaProps} from 'antd/lib/input';
+import {ModalProps} from 'antd/lib/modal';
 import {SelectProps} from 'antd/lib/select';
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import {Blog} from '@/src/apis';
 import {useMarkdownConverter} from '@/src/hooks/useMarkdownConverter';
@@ -19,7 +19,7 @@ export function Add() {
     const [categoryOption, setCategoryOption] = useState<Category[]>([]);
     const [isLoadingCategory, setIsLoadingCategory] = useState(false);
     const [isSubmittingArticle, setIsSubmittingArticle] = useState(false);
-    const [isArticlePreviewModalVisible, setIsArticlePreviewModalVisible] =
+    const [isArticlePreviewModalOpen, setIsArticlePreviewModalOpen] =
         useState(false);
 
     const {loading: converterLoading, html: HTMLContent} =
@@ -55,17 +55,17 @@ export function Add() {
         setIsVisible(e.target.checked);
     };
 
-    const onArticlePreviewButtonClick: NativeButtonProps['onClick'] = (e) => {
+    const onArticlePreviewButtonClick: ButtonProps['onClick'] = (e) => {
         e.preventDefault();
-        setIsArticlePreviewModalVisible(true);
+        setIsArticlePreviewModalOpen(true);
     };
 
-    const onArticlePreviewModalOk: ButtonProps['onClick'] = (e) => {
+    const onArticlePreviewModalOk: ModalProps['onOk'] = (e) => {
         e.preventDefault();
-        setIsArticlePreviewModalVisible(false);
+        setIsArticlePreviewModalOpen(false);
     };
 
-    const onArticlePreviewModalCancel: ButtonProps['onClick'] =
+    const onArticlePreviewModalCancel: ModalProps['onCancel'] =
         onArticlePreviewModalOk;
 
     const initAfterSubmit = () => {
@@ -77,7 +77,7 @@ export function Add() {
         setIsSubmittingArticle(false);
     };
 
-    const onSubmitButtonClick: NativeButtonProps['onClick'] = async (e) => {
+    const onSubmitButtonClick: ButtonProps['onClick'] = async (e) => {
         e.preventDefault();
         if (typeof category === 'undefined') {
             message.warning('请选择文章分类');
@@ -115,7 +115,7 @@ export function Add() {
             onSubmitButtonClick={onSubmitButtonClick}
             isLoadingCategory={isLoadingCategory}
             isSubmittingArticle={isSubmittingArticle}
-            isArticlePreviewModalVisible={isArticlePreviewModalVisible}
+            isArticlePreviewModalOpen={isArticlePreviewModalOpen}
             onArticlePreviewButtonClick={onArticlePreviewButtonClick}
             onArticlePreviewModalOk={onArticlePreviewModalOk}
             onArticlePreviewModalCancel={onArticlePreviewModalCancel}

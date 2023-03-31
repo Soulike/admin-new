@@ -1,5 +1,5 @@
 import {message, notification} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
+import {ButtonProps} from 'antd/lib/button/button';
 import {ModalProps} from 'antd/lib/modal';
 import {PopconfirmProps} from 'antd/lib/popconfirm';
 import {SwitchProps} from 'antd/lib/switch';
@@ -28,7 +28,7 @@ export function ArticleList(props: IProps) {
     const [articleInModalTitle, setArticleInModalTitle] = useState('');
     const [articleInModalHTMLContent, setArticleInModalHTMLContent] =
         useState('');
-    const [modalIsVisible, setModalIsVisible] = useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const [idOfArticleToDelete, setIdOfArticleToDelete] = useState(0);
 
@@ -74,8 +74,8 @@ export function ArticleList(props: IProps) {
     }, [categoryIdFilter]);
 
     const modalOnOk: ModalProps['onOk'] = useCallback(() => {
-        setModalIsVisible(!modalIsVisible);
-    }, [modalIsVisible]);
+        setModalIsOpen(!modalIsOpen);
+    }, [modalIsOpen]);
 
     const modalOnCancel: ModalProps['onCancel'] = useCallback(modalOnOk, [
         modalOnOk,
@@ -95,7 +95,7 @@ export function ArticleList(props: IProps) {
                     setArticleInModalHTMLContent(
                         markdownConverter.makeHtml(article.content),
                     );
-                    setModalIsVisible(true);
+                    setModalIsOpen(true);
                 }
             };
         },
@@ -126,31 +126,29 @@ export function ArticleList(props: IProps) {
             [articleMap],
         );
 
-    const onModifyArticleButtonClick: (
-        id: number,
-    ) => NativeButtonProps['onClick'] = useCallback(
-        (id: number) => {
-            return (e) => {
-                e.preventDefault();
-                const urlSearchParams = new URLSearchParams();
-                urlSearchParams.set('id', id.toString());
-                navigate(
-                    `${
-                        PAGE_ID_TO_ROUTE[PAGE_ID.MANAGE.BLOG.ARTICLE.MODIFY]
-                    }?${urlSearchParams.toString()}`,
-                );
-            };
-        },
-        [navigate],
-    );
+    const onModifyArticleButtonClick: (id: number) => ButtonProps['onClick'] =
+        useCallback(
+            (id: number) => {
+                return (e) => {
+                    e.preventDefault();
+                    const urlSearchParams = new URLSearchParams();
+                    urlSearchParams.set('id', id.toString());
+                    navigate(
+                        `${
+                            PAGE_ID_TO_ROUTE[PAGE_ID.MANAGE.BLOG.ARTICLE.MODIFY]
+                        }?${urlSearchParams.toString()}`,
+                    );
+                };
+            },
+            [navigate],
+        );
 
-    const onDeleteArticleButtonClick: (
-        id: number,
-    ) => NativeButtonProps['onClick'] = useCallback((id: number) => {
-        return () => {
-            setIdOfArticleToDelete(id);
-        };
-    }, []);
+    const onDeleteArticleButtonClick: (id: number) => ButtonProps['onClick'] =
+        useCallback((id: number) => {
+            return () => {
+                setIdOfArticleToDelete(id);
+            };
+        }, []);
 
     const onDeleteArticleConfirm: PopconfirmProps['onConfirm'] =
         useCallback(async () => {
@@ -169,7 +167,7 @@ export function ArticleList(props: IProps) {
             isLoading={categoriesIsLoading || isArticleLoading}
             articleMap={articleMap}
             categoryMap={categoryMap}
-            modalIsVisible={modalIsVisible}
+            modalIsOpen={modalIsOpen}
             articleInModalTitle={articleInModalTitle}
             articleInModalHTMLContent={articleInModalHTMLContent}
             modalOnOk={modalOnOk}

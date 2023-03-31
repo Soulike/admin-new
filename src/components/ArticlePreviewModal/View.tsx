@@ -8,18 +8,18 @@ import Style from './Style.module.scss';
 interface Props {
     title: string;
     HTMLContent: string;
-    visible: ModalProps['visible'];
+    open: ModalProps['open'];
     onOk: ModalProps['onOk'];
     onCancel: ModalProps['onCancel'];
 }
 
 export function ArticlePreviewModal(props: Props) {
-    const {title, HTMLContent, visible, onOk, onCancel} = props;
+    const {title, HTMLContent, open, onOk, onCancel} = props;
     return (
         <Modal
             title={title}
             width={'80vw'}
-            visible={visible}
+            open={open}
             onOk={onOk}
             onCancel={onCancel}
             destroyOnClose={true}>

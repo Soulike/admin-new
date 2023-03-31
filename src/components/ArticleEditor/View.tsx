@@ -1,7 +1,7 @@
 import {Button, ButtonProps, Checkbox, Input, Select} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
 import {CheckboxProps} from 'antd/lib/checkbox';
 import {InputProps, TextAreaProps} from 'antd/lib/input';
+import {ModalProps} from 'antd/lib/modal';
 import {SelectProps} from 'antd/lib/select';
 
 import {ArticlePreviewModal} from '@/src/components/ArticlePreviewModal';
@@ -22,14 +22,14 @@ interface Props {
     onContentTextAreaChange: TextAreaProps['onChange'];
     onCategorySelectorChange: SelectProps<number>['onChange'];
     onIsVisibleCheckboxChange: CheckboxProps['onChange'];
-    onSubmitButtonClick: NativeButtonProps['onClick'];
+    onSubmitButtonClick: ButtonProps['onClick'];
     isLoadingCategory: boolean;
     isLoadingArticle: boolean;
     isSubmittingArticle: boolean;
-    onArticlePreviewButtonClick: NativeButtonProps['onClick'];
-    isArticlePreviewModalVisible: boolean;
-    onArticlePreviewModalOk: ButtonProps['onClick'];
-    onArticlePreviewModalCancel: ButtonProps['onClick'];
+    onArticlePreviewButtonClick: ButtonProps['onClick'];
+    isArticlePreviewModalOpen: boolean;
+    onArticlePreviewModalOk: ModalProps['onOk'];
+    onArticlePreviewModalCancel: ModalProps['onCancel'];
     HTMLContent: string;
 }
 
@@ -49,7 +49,7 @@ export function ArticleEditor(props: Props) {
         isSubmittingArticle,
         isLoadingArticle,
         onArticlePreviewButtonClick,
-        isArticlePreviewModalVisible,
+        isArticlePreviewModalOpen,
         onArticlePreviewModalOk,
         onArticlePreviewModalCancel,
         HTMLContent,
@@ -131,7 +131,7 @@ export function ArticleEditor(props: Props) {
             <ArticlePreviewModal
                 title={title}
                 HTMLContent={HTMLContent}
-                visible={isArticlePreviewModalVisible}
+                open={isArticlePreviewModalOpen}
                 onOk={onArticlePreviewModalOk}
                 onCancel={onArticlePreviewModalCancel}
             />

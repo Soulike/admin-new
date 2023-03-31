@@ -1,10 +1,10 @@
 import {message, notification} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
+import {ButtonProps} from 'antd/lib/button/button';
 import {InputProps} from 'antd/lib/input';
 import {ModalProps} from 'antd/lib/modal';
 import {PopconfirmProps} from 'antd/lib/popconfirm';
 import {TagProps} from 'antd/lib/tag';
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import {Blog} from '@/src/apis';
 import {Category} from '@/src/types';
@@ -109,7 +109,7 @@ export function Manage() {
         setIsModifyModalVisible(false);
     };
 
-    const onModifyButtonClick: (id: number) => NativeButtonProps['onClick'] = (
+    const onModifyButtonClick: (id: number) => ButtonProps['onClick'] = (
         id,
     ) => {
         return () => {
@@ -125,7 +125,7 @@ export function Manage() {
 
     const onDeleteCategoryButtonClick: (
         id: number,
-    ) => NativeButtonProps['onClick'] = (id) => {
+    ) => ButtonProps['onClick'] = (id) => {
         return () => setIdOfCategoryToDelete(id);
     };
 

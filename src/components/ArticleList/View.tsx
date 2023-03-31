@@ -1,6 +1,6 @@
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
 import {Button, List, Popconfirm, Skeleton, Switch, Tag, Tooltip} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
+import {ButtonProps} from 'antd/lib/button/button';
 import {ModalProps} from 'antd/lib/modal';
 import {PopconfirmProps} from 'antd/lib/popconfirm';
 import {SwitchProps} from 'antd/lib/switch';
@@ -25,14 +25,14 @@ interface Props {
     ) => DOMAttributes<HTMLSpanElement>['onClick'];
     articleInModalTitle: string;
     articleInModalHTMLContent: string;
-    modalIsVisible: boolean;
+    modalIsOpen: boolean;
     modalOnOk: ModalProps['onOk'];
     modalOnCancel: ModalProps['onCancel'];
     loadingArticleId: number;
 
     onIsVisibleSwitchClick: (id: number) => SwitchProps['onClick'];
-    onModifyArticleButtonClick: (id: number) => NativeButtonProps['onClick'];
-    onDeleteArticleButtonClick: (id: number) => NativeButtonProps['onClick'];
+    onModifyArticleButtonClick: (id: number) => ButtonProps['onClick'];
+    onDeleteArticleButtonClick: (id: number) => ButtonProps['onClick'];
     onDeleteArticleConfirm: PopconfirmProps['onConfirm'];
 }
 
@@ -44,7 +44,7 @@ export function ArticleListView(props: Props) {
         loadingArticleId,
         articleInModalHTMLContent,
         articleInModalTitle,
-        modalIsVisible,
+        modalIsOpen,
         modalOnCancel,
         modalOnOk,
         onArticleTitleClick,
@@ -173,7 +173,7 @@ export function ArticleListView(props: Props) {
             <ArticlePreviewModal
                 title={articleInModalTitle}
                 HTMLContent={articleInModalHTMLContent}
-                visible={modalIsVisible}
+                open={modalIsOpen}
                 onOk={modalOnOk}
                 onCancel={modalOnCancel}
             />

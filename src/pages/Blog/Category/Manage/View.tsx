@@ -1,6 +1,6 @@
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
 import {Button, List, Popconfirm, Tag, Tooltip} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
+import {ButtonProps} from 'antd/lib/button/button';
 import {InputProps} from 'antd/lib/input';
 import {ModalProps} from 'antd/lib/modal';
 import {PopconfirmProps} from 'antd/lib/popconfirm';
@@ -28,14 +28,14 @@ interface Props {
     onArticleListModalOk: ModalProps['onOk'];
     onArticleListModalCancel: ModalProps['onCancel'];
 
-    onModifyButtonClick: (id: number) => NativeButtonProps['onClick'];
+    onModifyButtonClick: (id: number) => ButtonProps['onClick'];
     isModifyModalVisible: boolean;
     onModifyModalOk: ModalProps['onOk'];
     onModifyModalCancel: ModalProps['onCancel'];
     nameOfCategoryToModify: string;
     onCategoryNameInputChange: InputProps['onChange'];
 
-    onDeleteCategoryButtonClick: (id: number) => NativeButtonProps['onClick'];
+    onDeleteCategoryButtonClick: (id: number) => ButtonProps['onClick'];
     onDeleteCategoryConfirm: PopconfirmProps['onConfirm'];
 }
 

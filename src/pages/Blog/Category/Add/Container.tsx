@@ -1,5 +1,5 @@
 import {message, notification} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
+import {ButtonProps} from 'antd/lib/button/button';
 import {InputProps} from 'antd/lib/input';
 import {useState} from 'react';
 
@@ -20,7 +20,7 @@ export function Add() {
         setIsSubmitting(false);
     };
 
-    const onSubmitButtonClick: NativeButtonProps['onClick'] = async (e) => {
+    const onSubmitButtonClick: ButtonProps['onClick'] = async (e) => {
         e.preventDefault();
         if (categoryName.length === 0) {
             message.warning('分类名不能为空');
