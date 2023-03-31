@@ -1,5 +1,5 @@
 import {Modal, notification} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
+import {ButtonProps} from 'antd/lib/button/button';
 import {ModalFuncProps} from 'antd/lib/modal';
 import {useCallback, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
@@ -31,8 +31,8 @@ export function Frame() {
             navigate(PAGE_ID_TO_ROUTE[PAGE_ID.LOGIN], {replace: true});
         }, [navigate]);
 
-    const onExitButtonClick: NativeButtonProps['onClick'] = useCallback<
-        Exclude<NativeButtonProps['onClick'], undefined>
+    const onExitButtonClick: ButtonProps['onClick'] = useCallback<
+        Exclude<ButtonProps['onClick'], undefined>
     >(
         (e) => {
             e.preventDefault();

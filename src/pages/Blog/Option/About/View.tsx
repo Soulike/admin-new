@@ -1,5 +1,5 @@
 import {Button, Input} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
+import {ButtonProps} from 'antd/lib/button/button';
 import {TextAreaProps} from 'antd/lib/input';
 import {ModalProps} from 'antd/lib/modal';
 
@@ -13,12 +13,12 @@ interface Props {
     about: string;
     aboutHtml: string;
     onAboutTextareaChange: TextAreaProps['onChange'];
-    onPreviewButtonClick: NativeButtonProps['onClick'];
-    onSubmitButtonClick: NativeButtonProps['onClick'];
+    onPreviewButtonClick: ButtonProps['onClick'];
+    onSubmitButtonClick: ButtonProps['onClick'];
 
     onPreviewModalOk: ModalProps['onOk'];
     onPreviewModalCancel: ModalProps['onCancel'];
-    previewModalVisible: boolean;
+    previewModalOpen: boolean;
     loading: boolean;
 }
 
@@ -29,7 +29,7 @@ export function AboutView(props: Props) {
         aboutHtml,
         onPreviewModalCancel,
         onPreviewModalOk,
-        previewModalVisible,
+        previewModalOpen,
         onSubmitButtonClick,
         onPreviewButtonClick,
         loading,
@@ -62,7 +62,7 @@ export function AboutView(props: Props) {
                 HTMLContent={aboutHtml}
                 onOk={onPreviewModalOk}
                 onCancel={onPreviewModalCancel}
-                visible={previewModalVisible}
+                open={previewModalOpen}
             />
         </div>
     );

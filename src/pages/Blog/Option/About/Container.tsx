@@ -1,5 +1,5 @@
 import {message, notification} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
+import {ButtonProps} from 'antd/lib/button/button';
 import {TextAreaProps} from 'antd/lib/input';
 import {ModalProps} from 'antd/lib/modal';
 import React, {useEffect, useState} from 'react';
@@ -11,7 +11,7 @@ import {AboutView} from './View';
 
 export function About() {
     const [aboutMarkdown, setAboutMarkdown] = useState('');
-    const [previewModalVisible, setPreviewModalVisible] = useState(false);
+    const [previewModalOpen, setPreviewModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -32,11 +32,11 @@ export function About() {
         setAboutMarkdown(e.target.value);
     };
 
-    const onPreviewButtonClick: NativeButtonProps['onClick'] = () => {
-        setPreviewModalVisible(true);
+    const onPreviewButtonClick: ButtonProps['onClick'] = () => {
+        setPreviewModalOpen(true);
     };
 
-    const onSubmitButtonClick: NativeButtonProps['onClick'] = async () => {
+    const onSubmitButtonClick: ButtonProps['onClick'] = async () => {
         if (aboutMarkdown.length !== 0) {
             setLoading(true);
             const result = await Blog.Option.set(aboutMarkdown);
@@ -50,7 +50,7 @@ export function About() {
     };
 
     const onPreviewModalOk: ModalProps['onOk'] = () => {
-        setPreviewModalVisible(false);
+        setPreviewModalOpen(false);
     };
 
     const onPreviewModalCancel: ModalProps['onCancel'] = onPreviewModalOk;
@@ -60,7 +60,7 @@ export function About() {
             onSubmitButtonClick={onSubmitButtonClick}
             about={aboutMarkdown}
             aboutHtml={aboutHtml ?? ''}
-            previewModalVisible={previewModalVisible}
+            previewModalOpen={previewModalOpen}
             onAboutTextareaChange={onAboutTextareaChange}
             onPreviewButtonClick={onPreviewButtonClick}
             onPreviewModalCancel={onPreviewModalCancel}

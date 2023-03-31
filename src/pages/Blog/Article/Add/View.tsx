@@ -1,7 +1,7 @@
 import {ButtonProps} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
 import {CheckboxProps} from 'antd/lib/checkbox';
 import {InputProps, TextAreaProps} from 'antd/lib/input';
+import {ModalProps} from 'antd/lib/modal';
 import {SelectProps} from 'antd/lib/select';
 
 import {ArticleEditor} from '@/src/components/ArticleEditor';
@@ -19,13 +19,13 @@ interface Props {
     onContentTextAreaChange: TextAreaProps['onChange'];
     onCategorySelectorChange: SelectProps<number>['onChange'];
     onIsVisibleCheckboxChange: CheckboxProps['onChange'];
-    onSubmitButtonClick: NativeButtonProps['onClick'];
+    onSubmitButtonClick: ButtonProps['onClick'];
     isLoadingCategory: boolean;
     isSubmittingArticle: boolean;
-    onArticlePreviewButtonClick: NativeButtonProps['onClick'];
-    isArticlePreviewModalVisible: boolean;
-    onArticlePreviewModalOk: ButtonProps['onClick'];
-    onArticlePreviewModalCancel: ButtonProps['onClick'];
+    onArticlePreviewButtonClick: ButtonProps['onClick'];
+    isArticlePreviewModalOpen: boolean;
+    onArticlePreviewModalOk: ModalProps['onOk'];
+    onArticlePreviewModalCancel: ModalProps['onCancel'];
     HTMLContent: string;
 }
 

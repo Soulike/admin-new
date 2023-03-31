@@ -1,5 +1,5 @@
 import {Button, Input} from 'antd';
-import {NativeButtonProps} from 'antd/lib/button/button';
+import {ButtonProps} from 'antd/lib/button/button';
 import {InputProps} from 'antd/lib/input';
 
 import Style from './Style.module.scss';
@@ -7,7 +7,7 @@ import Style from './Style.module.scss';
 interface Props {
     categoryName: string;
     onCategoryNameInputChange: InputProps['onChange'];
-    onSubmitButtonClick: NativeButtonProps['onClick'];
+    onSubmitButtonClick: ButtonProps['onClick'];
     isSubmitting: boolean;
 }
 

@@ -1,5 +1,4 @@
-import 'antd/dist/antd.min.css';
-import '@/src/moduleConfig/antd';
+import 'antd/dist/reset.css';
 import './index.scss';
 
 import {ConfigProvider} from 'antd';
